@@ -10,8 +10,11 @@ export default function LoginPage() {
   async function handleSignup() {
 
     const { error } = await supabase.auth.signInWithOtp({
-      email,
-    });
+  email,
+  options: {
+    emailRedirectTo: "http://localhost:3000/profile",
+  },
+});
 
     if (error) {
       alert(error.message);
